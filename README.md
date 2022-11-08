@@ -1,2 +1,1 @@
-# Arduino
-arduino suli kódok
+# Arduino and Raspberry Pi Pico scripts

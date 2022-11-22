@@ -1,12 +1,14 @@
 import serial
 from time import *
-ser = serial.Serial("/dev/ttyACM0")
+ser = serial.Serial("/dev/ttyACM2")
 sleep(5)
-while True:
-    ser.write(bytes(input("#"),"utf-8"))
-    ser.flush()
-    rec = ser.readline()
-    print(rec)
+data = open("text.txt").readlines()
+
+for i in range(len(data)):
+    ser.write(bytes(data[i].replace("\n",""), "utf-8"))
+    print(data[i].replace("\n",""))
+    ser.readline()
+
 
 
 ##################################

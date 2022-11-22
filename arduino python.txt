@@ -1,0 +1,32 @@
+import serial
+from time import *
+ser = serial.Serial("/dev/ttyACM0")
+sleep(5)
+while True:
+    ser.write(bytes(input("#"),"utf-8"))
+    ser.flush()
+    rec = ser.readline()
+    print(rec)
+
+
+##################################
+
+#include <LiquidCrystal_I2C.h>
+#include <Wire.h>
+LiquidCrystal_I2C lcd(0x27,20,4);
+
+void setup(){
+  lcd.init();
+  lcd.backlight();
+  lcd.home();
+  Serial.begin(9600);
+}
+void loop(){
+  if(Serial.available()>0){
+    String receive = Serial.readString();
+    receive.trim();
+    lcd.clear();
+    lcd.print(receive);
+    Serial.println(receive);
+  }
+}
